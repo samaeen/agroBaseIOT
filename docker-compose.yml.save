@@ -1,0 +1,19 @@
+1aYxsYHqTdHp3XXx1tHb2uurQiPht6RnYns6Hlk2HpPHvuVGNk3byZNOjAJw1VgkNCqKiGyEgGpxD                                                                                                                        SCKSygt6A==1aYxsYHqTdHp3XXx1tHb2uurQiPht6RnYns6Hlk2HpPHvuVGNk3byZNOjAJw1VgkNCqKiGyEgGpxD                                                                                                                        SCKSygt6A==version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb2
+      - ./influxdb_config:/etc/influxdb2
+    restart: unless-stopped
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=shoummo
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password
+      - DOCKER_INFLUXDB_INIT_ORG=shoummo
+      - DOCKER_INFLUXDB_INIT_BUC1aYxsYHqTdHp3XXx1tHb2uurQiPht6RnYns6Hlk2HpPHvuVGNk3byZNOjAJw1VgkNCqKiGyEgGpxDTZZTZTZTKET=shoummo
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=

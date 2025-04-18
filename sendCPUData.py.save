@@ -1,0 +1,20 @@
+from influxdb_client import InfluxDBClient, Point
+from influxdb_client.client.write_api import SYNCHRONOUS
+import psutil, time
+from datetime import datetime
+
+# Replace with your own info
+url = "http://localhost:8086"
+token = "your_token"
+org = "your_org"
+bucket = "your_bucket"
+
+client = InfluxDBClient(url=url, token=token, org=org)
+write_api = client.write_api(write_options=SYNCHRONOUS)
+
+while True:
+    cpu = psutil.cpu_percent()
+    point = Point("rpi_metrics").field("cpu", cpu).time(datetime.utcnow())
+    write_api.write(bucket=bucket, org=org, record=point)
+    print(f"Sent CPU: {cpu}%")
+    time.sleep(

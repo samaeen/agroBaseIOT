@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb2
+      - ./influxdb_config:/etc/influxdb2
+    restart: unless-stopped
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME="shoummo"
+      - DOCKER_INFLUXDB_INIT_PASSWORD="password"
+      - DOCKER_INFLUXDB_INIT_ORG="shoummo"
+      - DOCKER_INFLUXDB_INIT_BUCKET="shoummo"
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN="vonTBJH6Zpa9NkIU4WXO0umjjsV-SZ9vpxj0h0BuIGv2Rop4ZVrnJPfJPS4tLYUb0wxxGN25RqleBEd0suBgag==" 
+

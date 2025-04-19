@@ -18,3 +18,13 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET="shoummo"
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN="vonTBJH6Zpa9NkIU4WXO0umjjsV-SZ9vpxj0h0BuIGv2Rop4ZVrnJPfJPS4tLYUb0wxxGN25RqleBEd0suBgag==" 
 
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - influxdb
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
